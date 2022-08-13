@@ -294,7 +294,7 @@
         const rgx = new RegExp(`${data}`,"ig");
         const responseData = response.callback_query?.data;
         if(rgx.test(responseData)){
-          this.session.setProperty([response.callback_query.message.chat.id], `${response.update_id}`)
+          this.session.setProperty([`${response.callback_query.message.chat.id}--${this.botId}`], `${response.update_id}`)
           this.session.setProperty('lastUpdate',`${response.update_id}`)
           return doSomething(response);
         }
