@@ -23,7 +23,7 @@ const trigger = () => {
   
   bot.onCommand('start',async (data)=>{
     const message = `hello ${data.message.chat.first_name}`;
-    await bot.sendMessage(data.message.chat.id,message,'HTML',additionalParams);
+    await bot.sendMessage(data.message.chat.id,message,'HTML');
   });
 }
 ```
@@ -40,9 +40,22 @@ const doPost = (e) => {
   const bot = new TelegramGS.bot(`${botApiKey}`,"webhook",e);
   bot.onCommand('start',async (data)=>{
     const message = `hello ${data.message.chat.first_name}`;
-    await bot.sendMessage(data.message.chat.id,message,'HTML',additionalParams);
+    await bot.sendMessage(data.message.chat.id,message,'HTML');
   });
 }
 ```
+
+## How-To
+These example are assuming we already initialize the `bot` by using one of [above](#bot-initialization) methods
+
+#### Send Message
+```
+const chatId = 123123 //<--- target chat id
+const message = `hello folks`;
+
+bot.sendMessage(chatId,message,'HTML');
+
+```
+
 
 
