@@ -1,0 +1,14 @@
+{
+  "src": [
+    "./main.gs",
+    "./LICENSE:md",
+    {
+      "guide": "./README.md"
+    }
+  ],
+  "dest": "./output/docs",
+  "app": {
+    "title": "telegram-gs",
+    "base": "/"
+  }
+}
