@@ -31,7 +31,6 @@
     return response.result
   }
 
-/** sender functions */
   /**
    * send message to chat_id
    * @param {Int} chat_id Chat id of a telegram user
@@ -125,9 +124,7 @@
     const response = await this.request('sendContact',data);
     return response;
   }
-/** /sender functions */
 
-/** getter functions */
   /**
    * manually get updates from api. it won't work if you already set the webhook
    * see more at https://core.telegram.org/bots/api#getupdates
@@ -182,8 +179,7 @@
     
     return result;
   }
-/** /getter functions */
-/** setter functions */
+
   /**
    * set bot commands description
    * @param {Array} commands Array of commands and it's description
@@ -237,8 +233,7 @@
     console.log("webhook removed", result);
     return result;
   }
-/** /setter functions */
-/** modifier functions */
+
   /**
    * delete message
    * @param {Object} message message object to be deleted
@@ -273,8 +268,7 @@
     const result = await this.request('editMessageText',payload);
     return result;
   }
-/** /modifier functions */
-/** event functions */
+
   /**
    * do something when an callback_query is received
    * @param {String} data callback data you want to catch.
@@ -482,5 +476,4 @@
     })
     
   }
-/** /event functions */
 
