@@ -6,7 +6,7 @@
       "guide": "./README.md"
     }
   ],
-  "dest": "./output/docs",
+  "dest": "./telegram-gs",
   "app": {
     "title": "telegram-gs",
     "base": "/"
