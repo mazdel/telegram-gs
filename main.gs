@@ -1,6 +1,5 @@
   /**
    * initiate the library
-   * @constructor
    * @param {String} token your telegram bot's token
    * @param {String} updateMethod update method which gonna be used (webhook | trigger)
    * @returns {Void}
