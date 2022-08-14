@@ -2,7 +2,8 @@
    * initiate the library
    * @constructor
    * @param {String} token your telegram bot's token
-   * @param {String} updateMethod update method which gonna be used (webhook | trigger)
+   * @param {String} [updateMethod='trigger'] update method which gonna be used (webhook | trigger)
+   * @param {String} [event={}] event variable from doPost(event) which have to be passed when using webhook update method
    * @returns {Void}
    */
   function bot(token,updateMethod='trigger',event={}){
