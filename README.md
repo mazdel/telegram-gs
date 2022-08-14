@@ -8,7 +8,7 @@ There are two options of installation we can use and they are...
 
 `Library ID : 1yjQjHBetnyA5N-6GaSo2paLt68N6-vZ1Bbug5Afnk77nJ32vsVJuGmKQ`
 
-2. Or we can copy scripts on this repository to your existing Google Apps Script project
+2. Or we can copy scripts on this repository to our existing Google Apps Script project
 
 ## Bot Initialization
 
