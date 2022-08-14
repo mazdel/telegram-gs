@@ -9,11 +9,7 @@
   "dest": "./telegram-gs",
   "app": {
     "title": "telegram-gs",
-    "base": "/"
+    "base": "/telegram-gs"
   },
-  "clean": true,
-  "jsdoc": {
-    "undocumented": true,
-    "undescribed": true
-  }
+  "clean": true
 }

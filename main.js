@@ -140,7 +140,7 @@
    * manually get updates from api. it won't work if you already set the webhook
    * see more at https://core.telegram.org/bots/api#getupdates
    * @memberof bot
-   * @param {Object} data data to be sent
+   * @param {Object} [data={}] data to be sent
    * @returns {Object}
    */
   bot.prototype.getUpdates= async function(data={}){
@@ -320,9 +320,9 @@
   /**
    * do something when a message (or which contains specified text) is received
    * @memberof bot
-   * @param {String} text (optional) specified text.
    * @param {Function} doSomething function you want to run when it catch the message
-   * @returns {Object}
+   * @param {String} [text=null] specified text.
+  * @returns {Object}
    */
   bot.prototype.onMessage= async function(doSomething,text=null){
     const initResponses = await this.getUpdates();
@@ -357,9 +357,9 @@
   /**
    * do something when a message (or which contains specified text) is received
    * @memberof bot
-   * @param {String} text (optional) specified text.
    * @param {Function} doSomething function you want to run when it catch the message
-   * @returns {Object}
+   * @param {String} [text=null] specified text.
+  * @returns {Object}
    */
   bot.prototype.onReply= async function(doSomething,text=null){
     const initResponses = await this.getUpdates();
@@ -424,8 +424,8 @@
   /**
    * do something when a photo (or which contains specified caption) is received
    * @memberof bot
-   * @param {String} text (optional) specified caption.
    * @param {Function} doSomething function you want to run when it catch the photo
+   * @param {String} [text=null] (optional) specified caption.
    * @returns {Object}
    */
   bot.prototype.onPhoto= async function(doSomething,text=null){
@@ -458,8 +458,8 @@
   /**
    * do something when a document (or which contains specified caption) is received
    * @memberof bot
-   * @param {String} text (optional) specified caption.
    * @param {Function} doSomething function you want to run when it catch the photo
+   * @param {String} [text=null] specified caption.
    * @returns {Object}
    */
   bot.prototype.onDocument= async function(doSomething,text=null){
