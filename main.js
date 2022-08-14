@@ -18,8 +18,8 @@
    * experts only,
    * send raw request to telegram api based on https://core.telegram.org/bots/api
    * @memberof bot
-   * @param {String} method the method of request is used
-   * @param {Object} data data to be sent with the request
+   * @param {String} method the method of telegram API this request will use
+   * @param {Object} [data={}] data to be sent with the request
    * @returns {Object}
    */
   bot.prototype.request = async function(method,data={}){
