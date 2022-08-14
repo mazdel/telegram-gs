@@ -31,7 +31,7 @@ next, we can add the `trigger()` function to GAS trigger service by accessing it
 and then, the function will periodically check if there are any updates on telegram's `getUpdates` endpoint.
 
 ### Using Webhook
-Different from before, now we will wait telegram to tell us any update they got and we will catch it by using the default `doPost()` function of GAS. fyi, it has a use to get any HTTP POST data to your web app. read it more [here](https://developers.google.com/apps-script/guides/triggers?hl=en#dogete_and_doposte) and [here](https://developers.google.com/apps-script/guides/web?hl=en#requirements_for_web_apps). 
+Different from before, on this metod we gonna wait telegram to tell us any update they got and we will catch it by using the default `doPost()` function of GAS. fyi, it has a use to get any HTTP POST data to your web app. read it more [here](https://developers.google.com/apps-script/guides/triggers?hl=en#dogete_and_doposte) and [here](https://developers.google.com/apps-script/guides/web?hl=en#requirements_for_web_apps). 
 
 Simply, we put every functions call the Bot library within `doPost(e)` function and pass the `e` parameter as a variable of bot constructor
 ```
