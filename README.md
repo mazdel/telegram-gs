@@ -44,6 +44,18 @@ const doPost = (e) => {
   });
 }
 ```
+and now we have to set our project web app url as webhook to the telegram by using `setWebhook` function. but before going into, we have to get our web app deployment url first and make sure our project can be accessed by everyone, read it at [Deploy a script as a web app](https://developers.google.com/apps-script/guides/web#deploy_a_script_as_a_web_app). 
+```
+const setWebhook = () => {
+  const botApiKey = '50123123123:AAGxxxxYYYYzzzzzzzWWWW';
+  const bot = new TelegramGS.bot(`${botApiKey}`);
+  const webAppUrl = "https://script.google.com/macros/s/thisIsJustAnExample-useTheRealGeneratedUrlOnDeploymentMenu/exec"; //<-- just an example
+  bot.setWebhook(webAppUrl);
+  const result = bot.webhookInfo();
+  console.log(result)
+}
+```
+and run `setWebhook()` function within our GAS editor, it should return a JSON contain our webhook data
 
 ## How-To
 These example are assuming we already initialize the `bot` by using one of [above](#bot-initialization) methods
