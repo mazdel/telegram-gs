@@ -96,3 +96,6 @@ bot.onCallbackData("cb_test2",async (data)=>{
 });
 ```
 more info about `additionalParams` at [telegram api documentation](https://core.telegram.org/bots/api#sendmessage)
+
+## More Documentation
+- [telegram-gs docs](https://mazdel.github.io/telegram-gs/)
