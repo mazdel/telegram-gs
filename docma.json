@@ -10,5 +10,10 @@
   "app": {
     "title": "telegram-gs",
     "base": "/"
+  },
+  "clean": true,
+  "jsdoc": {
+    "undocumented": true,
+    "undescribed": true
   }
 }
