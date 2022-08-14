@@ -58,9 +58,29 @@ bot.sendMessage(chatId,message,'HTML');
 #### Catch a bot `start` command and send a response
 ```
 bot.onCommand('start',async (data)=>{
-    const message = `hello ${data.message.chat.first_name},`;
-    await bot.sendMessage(data.message.chat.id,message,'HTML');
-  });
+  const message = `hello ${data.message.chat.first_name},`;
+  await bot.sendMessage(data.message.chat.id,message,'HTML');
+});
 ```
-
-
+#### Send an Inline Keyboard Markup and Catch the data
+```
+bot.onCommand('start',async (data)=>{
+  const message = `hello ${data.message.chat.first_name}, here is inline keyboard example`;
+  const additionalParams={
+    reply_markup:{
+      inline_keyboard:[
+        [{text:'inline key test 1',callback_data:'cb_test1'}],
+        [{text:'inline key test 2',callback_data:'cb_test2'}],
+      ],
+    }
+  }
+  await bot.sendMessage(data.message.chat.id,message,'HTML',additionalParams);
+});
+bot.onCallbackData("cb_test1",async (data)=>{
+  await bot.sendMessage(data.callback_query.message.chat.id, 'you clicked "inline key test 1"', 'HTML');
+});
+bot.onCallbackData("cb_test2",async (data)=>{
+  await bot.sendMessage(data.callback_query.message.chat.id, 'you clicked "inline key test 2"', 'HTML');
+});
+```
+more info about `additionalParams` at [telegram api documentation](https://core.telegram.org/bots/api#sendmessage)
