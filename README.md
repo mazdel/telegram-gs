@@ -50,12 +50,17 @@ These example are assuming we already initialize the `bot` by using one of [abov
 
 #### Send Message
 ```
-const chatId = 123123 //<--- target chat id
+const chatId = 123123 //<--- receiver chat id
 const message = `hello folks`;
 
 bot.sendMessage(chatId,message,'HTML');
-
 ```
-
+#### Catch a bot `start` command and send a response
+```
+bot.onCommand('start',async (data)=>{
+    const message = `hello ${data.message.chat.first_name},`;
+    await bot.sendMessage(data.message.chat.id,message,'HTML');
+  });
+```
 
 
