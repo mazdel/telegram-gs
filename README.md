@@ -12,7 +12,7 @@ There are two options of installation we can use and they are...
 
 ## Bot Initialization
 
-We also have two methods to initialize the bot as divided by how the bot can read message updates,
+We also have two methods to initialize the bot as divided by how the bot can get message updates,
 
 ### Using Google Apps Script (GAS) trigger
 At first, we need to create a function which will be triggered by GAS periodically, as simply like this
