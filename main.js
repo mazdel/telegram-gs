@@ -19,7 +19,7 @@
    * experts only,
    * send raw request to telegram api based on https://core.telegram.org/bots/api
    * @memberof bot
-   * @param {String} [method] the method of telegram API this request will use
+   * @param {String} method the method of telegram API this request will use
    * @param {Object} [data={}] data to be sent with the request
    * @returns {Object}
    */
@@ -37,8 +37,8 @@
   /**
    * send message to chat_id
    * @memberof bot
-   * @param {Int} [chat_id] Chat id of a telegram user
-   * @param {String} [text] Message to be sent
+   * @param {Int} chat_id Chat id of a telegram user
+   * @param {String} text Message to be sent
    * @param {String} [parse_mode = 'HTML'] Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
    * @param {Object} [params={}] Additional parameters, see https://core.telegram.org/bots/api#sendmessage
    * @returns {Object}
@@ -53,8 +53,8 @@
    * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {String} photo Photo to send. see explanation at https://core.telegram.org/bots/api#sending-files
-   * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
-   * @param {Object} params Additional parameters, see https://core.telegram.org/bots/api#sendphoto
+   * @param {String} [parse_mode='HTML'] Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
+   * @param {Object} [params={}] Additional parameters, see https://core.telegram.org/bots/api#sendphoto
    * @returns {Object}
    */
   bot.prototype.sendPhoto = async function(chat_id,photo,parse_mode='HTML',params={}){
