@@ -67,8 +67,8 @@
    * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {String} document Document to send. see explanation at https://core.telegram.org/bots/api#sending-files
-   * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
-   * @param {Object} params Additional parameters, see https://core.telegram.org/bots/api#senddocument
+   * @param {String} [parse_mode='HTML'] Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
+   * @param {Object} [params={}] Additional parameters, see https://core.telegram.org/bots/api#senddocument
    * @returns {Object}
    */
   bot.prototype.sendDocument = async function(chat_id,document,parse_mode='HTML',params={}){
@@ -81,8 +81,8 @@
    * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {String} video Video to send. see explanation at https://core.telegram.org/bots/api#sending-files
-   * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
-   * @param {Object} params Additional parameters, see https://core.telegram.org/bots/api#sendvideo
+   * @param {String} [parse_mode='HTML'] Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
+   * @param {Object} [params={}] Additional parameters, see https://core.telegram.org/bots/api#sendvideo
    * @returns {Object}
    */
   bot.prototype.sendVideo = async function(chat_id,video,parse_mode='HTML',params={}){
@@ -95,8 +95,8 @@
    * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {Array} location Array of latitude and longitude of a location to send. 
-   * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
-   * @param {Object} params Additional parameters, see https://core.telegram.org/bots/api#sendlocation
+   * @param {String} [parse_mode='HTML'] Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
+   * @param {Object} [params={}] Additional parameters, see https://core.telegram.org/bots/api#sendlocation
    * @returns {Object}
    */
   bot.prototype.sendLocation = async function(chat_id,location,parse_mode='HTML',params={}){
@@ -117,8 +117,8 @@
    * @param {Int} chat_id Chat id of a telegram user
    * @param {String} phone_number Contact's phone number. 
    * @param {String} first_name Contact's first name. 
-   * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
-   * @param {Object} params Additional parameters, see https://core.telegram.org/bots/api#sendlocation
+   * @param {String} [parse_mode='HTML'] Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
+   * @param {Object} [params={}] Additional parameters, see https://core.telegram.org/bots/api#sendlocation
    * @returns {Object}
    */
   bot.prototype.sendContact = async function(chat_id,phone_number,first_name,parse_mode='HTML',params={}){
@@ -185,8 +185,6 @@
   /**
    * get bot webhook info
    * @memberof bot
-   * @param {Array} drop_pending_updates drop pending updates default (false)
-   * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#deletewebhook
    * @returns {Object}
    */
   bot.prototype.webhookInfo = async function(){
@@ -200,7 +198,7 @@
    * set bot commands description
    * @memberof bot
    * @param {Array} commands Array of commands and it's description
-   * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#setmycommands
+   * @param {Object} [params={}] Additional parameters. https://core.telegram.org/bots/api#setmycommands
    * @returns {Object}
    */
   bot.prototype.setCommands = async function(commands,params={}){
@@ -215,7 +213,7 @@
    * set bot webhook
    * @memberof bot
    * @param {Array} url Webhook https url
-   * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#setwebhook
+   * @param {Object} [params={}] Additional parameters. https://core.telegram.org/bots/api#setwebhook
    * @returns {Object}
    */
   bot.prototype.setWebhook = async function(url,params={}){
@@ -239,7 +237,6 @@
    * remove bot webhook
    * @memberof bot
    * @param {Array} drop_pending_updates drop pending updates default (false)
-   * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#deletewebhook
    * @returns {Object}
    */
   bot.prototype.removeWebhook = async function(drop_pending_updates=false){
@@ -258,7 +255,7 @@
    * delete message
    * @memberof bot
    * @param {Object} message message object to be deleted
-   * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#deletemessage
+   * @param {Object} [params={}] Additional parameters. https://core.telegram.org/bots/api#deletemessage
    * @returns {Boolean}
    */
   bot.prototype.deleteMessage = async function(message,params={}){
@@ -275,8 +272,8 @@
    * @memberof bot
    * @param {Object} message message object to be edited
    * @param {String} text new text of the message
-   * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
-   * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#editmessagetext
+   * @param {String} [parse_mode='HTML'] Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
+   * @param {Object} [params={}] Additional parameters. https://core.telegram.org/bots/api#editmessagetext
    * @returns {Boolean}
    */
   bot.prototype.editMessage = async function(message,text,parse_mode='HTML',params={}){
