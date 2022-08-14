@@ -236,13 +236,13 @@
   /**
    * remove bot webhook
    * @memberof bot
-   * @param {Array} drop_pending_updates drop pending updates default (false)
+   * @param {Boolean} [drop_pending_updates=false] drop pending updates default (false)
    * @returns {Object}
    */
   bot.prototype.removeWebhook = async function(drop_pending_updates=false){
   
     const payload = {
-      drop_pending_updates:false,
+      drop_pending_updates:drop_pending_updates,
     };
 
     const result = await this.request('deleteWebhook',payload);
