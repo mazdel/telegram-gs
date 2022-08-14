@@ -8,7 +8,7 @@
    */
   function bot(token,updateMethod='trigger',event={}){
     this.token = token;
-    this.updateMethod=updateMethod; // or "webhook"
+    this.updateMethod=updateMethod;
     this.webHookUpdates = JSON.parse((event.postData?.contents)||'{}');
     
     this.botId = token.split(":")[0];
@@ -30,8 +30,8 @@
       'payload' : JSON.stringify(data)
     };
     const response = JSON.parse(UrlFetchApp.fetch(`https://api.telegram.org/bot${this.token}/${method}`,options).getContentText());
-    return response.result
-  }
+    return response.result;
+  };
 
 /** sender functions */
   /**
@@ -44,10 +44,10 @@
    * @returns {Object}
    */
   bot.prototype.sendMessage = async function(chat_id, text, parse_mode = 'HTML',params={} ){
-    const data = { chat_id:chat_id, text : text, parse_mode:parse_mode , ...params }
+    const data = { chat_id:chat_id, text : text, parse_mode:parse_mode , ...params };
     const response = await this.request('sendMessage',data);
     return response;
-  }
+  };
   /**
    * send photo to chat_id
    * @memberof bot
@@ -58,10 +58,10 @@
    * @returns {Object}
    */
   bot.prototype.sendPhoto = async function(chat_id,photo,parse_mode='HTML',params={}){
-    const data = { chat_id:chat_id, photo:photo, parse_mode:parse_mode , ...params }
+    const data = { chat_id:chat_id, photo:photo, parse_mode:parse_mode , ...params };
     const response = await this.request('sendPhoto',data);
     return response;
-  }
+  };
   /**
    * send document to chat_id
    * @memberof bot
@@ -72,10 +72,10 @@
    * @returns {Object}
    */
   bot.prototype.sendDocument = async function(chat_id,document,parse_mode='HTML',params={}){
-    const data = { chat_id:chat_id, document:document, parse_mode:parse_mode , ...params }
+    const data = { chat_id:chat_id, document:document, parse_mode:parse_mode , ...params };
     const response = await this.request('sendDocument',data);
     return response;
-  }
+  };
   /**
    * send video to chat_id
    * @memberof bot
@@ -86,10 +86,10 @@
    * @returns {Object}
    */
   bot.prototype.sendVideo = async function(chat_id,video,parse_mode='HTML',params={}){
-    const data = { chat_id:chat_id, video:video, parse_mode:parse_mode , ...params }
+    const data = { chat_id:chat_id, video:video, parse_mode:parse_mode , ...params };
     const response = await this.request('sendDocument',data);
     return response;
-  }
+  };
   /**
    * send location to chat_id
    * @memberof bot
@@ -107,10 +107,10 @@
       longitude:longitude, 
       parse_mode:parse_mode, 
       ...params,
-      }
+      };
     const response = await this.request('sendLocation',data);
     return response;
-  }
+  };
   /**
    * send contact to chat_id
    * @memberof bot
@@ -129,10 +129,10 @@
       first_name:first_name, 
       parse_mode:parse_mode, 
       ...params,
-      }
+      };
     const response = await this.request('sendContact',data);
     return response;
-  }
+  };
 /** /sender functions */
 
 /** getter functions */
@@ -147,7 +147,7 @@
     if(this.updateMethod=="webhook"){
       return [this.webHookUpdates];
     }else{
-    let {offset,allowed_updates,...restData} = data
+    let {offset,allowed_updates,...restData} = data;
     offset=offset||1;
     allowed_updates=allowed_updates||['message','callback_query'];
     const payload = {
@@ -158,7 +158,7 @@
     
     return responses;
     }
-  }
+  };
   /**
    * get basic info about a file and prepare it for downloading
    * see more at https://core.telegram.org/bots/api#getfile
@@ -170,7 +170,7 @@
     const payload = {file_id:fileId};
     const responses = await this.request('getFile',payload);
     return responses;
-  }
+  };
   /**
    * get basic info about a file and the download link. link expired in 1 hour
    * @memberof bot
@@ -181,7 +181,7 @@
     const responses = await this.getFile(fileId);
     const file_link = `https://api.telegram.org/file/bot${this.token}/${responses.file_path}`;
     return {...responses,file_link};
-  }
+  };
   /**
    * get bot webhook info
    * @memberof bot
@@ -191,7 +191,7 @@
     const result = await this.request('getWebhookInfo');
     
     return result;
-  }
+  };
 /** /getter functions */
 /** setter functions */
   /**
@@ -205,10 +205,10 @@
     const data = {
       commands:commands,
       ...params,
-    }
+    };
     const result = await this.request('setMyCommands',data);
     return result;
-  }
+  };
   /**
    * set bot webhook
    * @memberof bot
@@ -227,11 +227,11 @@
       url: url,
       allowed_updates: allowed_updates,
       ...restParams,
-    }
+    };
     const result = await this.request('setWebhook',payload);
     console.log("webhook has been set", result);
     return result;
-  }
+  };
   
   /**
    * remove bot webhook
@@ -243,12 +243,12 @@
   
     const payload = {
       drop_pending_updates:false,
-    }
+    };
 
     const result = await this.request('deleteWebhook',payload);
     console.log("webhook removed", result);
     return result;
-  }
+  };
 /** /setter functions */
 /** modifier functions */
   /**
@@ -266,7 +266,7 @@
     };
     const result = await this.request('deleteMessage',payload);
     return result;
-  }
+  };
   /**
    * edit message
    * @memberof bot
@@ -286,7 +286,7 @@
     };
     const result = await this.request('editMessageText',payload);
     return result;
-  }
+  };
 /** /modifier functions */
 /** event functions */
   /**
@@ -301,7 +301,7 @@
     
     const chatId = (initResponses[0].callback_query?.message.chat.id)?initResponses[0].callback_query.message.chat.id:initResponses[0].message.chat.id;
     const lastUpdateId = this.session.getProperty(`${chatId}--${this.botId}`); 
-    // const lastUpdateId = this.session.getProperty(`${chatId}`);
+ 
     const responses = await this.getUpdates({offset:lastUpdateId});
     
     return responses.map(response=>{
@@ -310,13 +310,13 @@
         const rgx = new RegExp(`${data}`,"ig");
         const responseData = response.callback_query?.data;
         if(rgx.test(responseData)){
-          this.session.setProperty([`${response.callback_query.message.chat.id}--${this.botId}`], `${response.update_id}`)
-          this.session.setProperty('lastUpdate',`${response.update_id}`)
+          this.session.setProperty([`${response.callback_query.message.chat.id}--${this.botId}`], `${response.update_id}`);
+          this.session.setProperty('lastUpdate',`${response.update_id}`);
           return doSomething(response);
         }
       }
-    })
-  }
+    });
+  };
   /**
    * do something when a message (or which contains specified text) is received
    * @memberof bot
@@ -328,33 +328,32 @@
     const initResponses = await this.getUpdates();
     const chatId = (initResponses[0]?.message.chat.id)?initResponses[0]?.message.chat.id:initResponses[0]?.callback_query.message.chat.id;
     const lastUpdateId = this.session.getProperty(`${chatId}--${this.botId}`); 
-    // const lastUpdateId = this.session.getProperty(`${chatId}`);
+ 
     const responses = await this.getUpdates({offset:lastUpdateId});
 
     const result = responses.map((response)=>{
-      const message = response.message.text
+      const message = response.message.text;
       if(!message) return false;
       if(response.message.chat.id && lastUpdateId < response.update_id ){
         
         if(text){
-          const rgx = new RegExp(`.*${text}.*`,"ig")
+          const rgx = new RegExp(`.*${text}.*`,"ig");
           if(rgx.test(message)){
-            this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`) 
-            // this.session.setProperty([response.message.chat.id], `${response.update_id}`)
-            this.session.setProperty('lastUpdate',`${response.update_id}`)
+            this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`);
+ 
+            this.session.setProperty('lastUpdate',`${response.update_id}`);
             return doSomething(response);
           }
           return false;
         }
-        this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`) 
-            // this.session.setProperty([response.message.chat.id], `${response.update_id}`)
-        this.session.setProperty('lastUpdate',`${response.update_id}`)
+        this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`);
+ 
+        this.session.setProperty('lastUpdate',`${response.update_id}`);
         return doSomething(response);
       }
-      return false
-    })
-    // return result;
-  }
+      return false;
+    });
+  };
   /**
    * do something when a message (or which contains specified text) is received
    * @memberof bot
@@ -366,7 +365,7 @@
     const initResponses = await this.getUpdates();
     const chatId = (initResponses[0]?.message.chat.id)?initResponses[0]?.message.chat.id:initResponses[0]?.callback_query.message.chat.id;
     const lastUpdateId = this.session.getProperty(`${chatId}--${this.botId}`); 
-    // const lastUpdateId = this.session.getProperty(`${chatId}`);
+ 
     const responses = await this.getUpdates({offset:lastUpdateId});
 
     const result = responses.map((response)=>{
@@ -374,24 +373,23 @@
       if(!message) return false;
       if(response.message.chat.id && lastUpdateId < response.update_id ){
         if(text){
-          const rgx = new RegExp(`.*${text}.*`,"ig")
+          const rgx = new RegExp(`.*${text}.*`,"ig");
           if(rgx.test(message)){
-            this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`) 
-            // this.session.setProperty([response.message.chat.id], `${response.update_id}`)
-            this.session.setProperty('lastUpdate',`${response.update_id}`)
+            this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`);
+ 
+            this.session.setProperty('lastUpdate',`${response.update_id}`);
             return doSomething(response);
           }
           return false;
         }
-        this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`) 
-            // this.session.setProperty([response.message.chat.id], `${response.update_id}`)
-        this.session.setProperty('lastUpdate',`${response.update_id}`)
+        this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`); 
+ 
+        this.session.setProperty('lastUpdate',`${response.update_id}`);
         return doSomething(response);
       }
-      return false
-    })
-    // return result;
-  }
+      return false;
+    });
+  };
   /**
    * do something when a command is received
    * @memberof bot
@@ -404,27 +402,25 @@
     
     const initResponses = await this.getUpdates();
     const chatId = (initResponses[0]?.message.chat.id)?initResponses[0]?.message.chat.id:initResponses[0]?.callback_query.message.chat.id;
-    const lastUpdateId = this.session.getProperty(`${chatId}--${this.botId}`); // 
-    // const lastUpdateId = this.session.getProperty(`${chatId}`);
+    const lastUpdateId = this.session.getProperty(`${chatId}--${this.botId}`); 
+ 
     const responses = await this.getUpdates({offset:lastUpdateId});
-    // https://developers.google.com/apps-script/guides/properties    
+ 
     
     const rgx = new RegExp(`^/${command}(\s.*)?`,"ig");
 
     const result = responses.map((response)=>{
       const message = response.message?.text;
-      // console.log(response);
       if(!!(response.message.chat.id) && lastUpdateId < response.update_id ){
         if(rgx.test(message)){
-          this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`) 
-            // this.session.setProperty([response.message.chat.id], `${response.update_id}`)
-          this.session.setProperty('lastUpdate',`${response.update_id}`)
+          this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`);
+          this.session.setProperty('lastUpdate',`${response.update_id}`);
           return doSomething(response);
         }
         return false;
       }
-    })
-  }
+    });
+  };
   /**
    * do something when a photo (or which contains specified caption) is received
    * @memberof bot
@@ -436,33 +432,29 @@
     const initResponses = await this.getUpdates();
     const chatId = (initResponses[0]?.message.chat.id)?initResponses[0]?.message.chat.id:initResponses[0]?.callback_query.message.chat.id;
     const lastUpdateId = this.session.getProperty(`${chatId}--${this.botId}`); 
-    // const lastUpdateId = this.session.getProperty(`${chatId}`);
     const responses = await this.getUpdates({offset:lastUpdateId});
     const result = responses.map((response)=>{
-      const photo = response.message.photo
+      const photo = response.message.photo;
       if(!photo) return false;
       const caption = response.message.caption;
 
       if(response.message.chat.id && lastUpdateId < response.update_id ){
         if(text){
-          const rgx = new RegExp(`.*${text}.*`,"ig")
+          const rgx = new RegExp(`.*${text}.*`,"ig");
           if(rgx.test(caption)){
-            this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`) 
-            // this.session.setProperty([response.message.chat.id], `${response.update_id}`)
-            this.session.setProperty('lastUpdate',`${response.update_id}`)
+            this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`);
+            this.session.setProperty('lastUpdate',`${response.update_id}`);
             return doSomething(response);
           }
           return false;
         }
-        this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`) 
-            // this.session.setProperty([response.message.chat.id], `${response.update_id}`)
-        this.session.setProperty('lastUpdate',`${response.update_id}`)
+        this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`);
+        this.session.setProperty('lastUpdate',`${response.update_id}`);
         return doSomething(response);
       }
-      return false
-    })
-    
-  }
+      return false;
+    });
+  };
   /**
    * do something when a document (or which contains specified caption) is received
    * @memberof bot
@@ -474,33 +466,30 @@
     const initResponses = await this.getUpdates();
     const chatId = (initResponses[0]?.message.chat.id)?initResponses[0]?.message.chat.id:initResponses[0]?.callback_query.message.chat.id;
     const lastUpdateId = this.session.getProperty(`${chatId}--${this.botId}`); 
-    // const lastUpdateId = this.session.getProperty(`${chatId}`);
     const responses = await this.getUpdates({offset:lastUpdateId});
     const result = responses.map((response)=>{
       
-      const document = response.message.document
+      const document = response.message.document;
       if(!document) return false;
       const caption = response.message.caption;
 
       if(response.message.chat.id && lastUpdateId < response.update_id ){
         if(text){
-          const rgx = new RegExp(`.*${text}.*`,"ig")
+          const rgx = new RegExp(`.*${text}.*`,"ig");
           if(rgx.test(caption)){
-            this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`) 
-            // this.session.setProperty([response.message.chat.id], `${response.update_id}`)
-            this.session.setProperty('lastUpdate',`${response.update_id}`)
+            this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`);
+            this.session.setProperty('lastUpdate',`${response.update_id}`);
             return doSomething(response);
           }
           return false;
         }
-        this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`) 
-            // this.session.setProperty([response.message.chat.id], `${response.update_id}`)
-        this.session.setProperty('lastUpdate',`${response.update_id}`)
+        this.session.setProperty([`${chatId}--${this.botId}`], `${response.update_id}`);
+        this.session.setProperty('lastUpdate',`${response.update_id}`);
         return doSomething(response);
       }
-      return false
-    })
+      return false;
+    });
     
-  }
+  };
 /** /event functions */
 
