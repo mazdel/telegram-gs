@@ -17,6 +17,7 @@
   /**
    * experts only,
    * send raw request to telegram api based on https://core.telegram.org/bots/api
+   * @memberof bot
    * @param {String} method the method of request is used
    * @param {Object} data data to be sent with the request
    * @returns {Object}
@@ -34,6 +35,7 @@
 /** sender functions */
   /**
    * send message to chat_id
+   * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {String} text Message to be sent
    * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
@@ -47,6 +49,7 @@
   }
   /**
    * send photo to chat_id
+   * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {String} photo Photo to send. see explanation at https://core.telegram.org/bots/api#sending-files
    * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
@@ -60,6 +63,7 @@
   }
   /**
    * send document to chat_id
+   * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {String} document Document to send. see explanation at https://core.telegram.org/bots/api#sending-files
    * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
@@ -73,6 +77,7 @@
   }
   /**
    * send video to chat_id
+   * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {String} video Video to send. see explanation at https://core.telegram.org/bots/api#sending-files
    * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
@@ -86,6 +91,7 @@
   }
   /**
    * send location to chat_id
+   * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {Array} location Array of latitude and longitude of a location to send. 
    * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
@@ -106,6 +112,7 @@
   }
   /**
    * send contact to chat_id
+   * @memberof bot
    * @param {Int} chat_id Chat id of a telegram user
    * @param {String} phone_number Contact's phone number. 
    * @param {String} first_name Contact's first name. 
@@ -131,6 +138,7 @@
   /**
    * manually get updates from api. it won't work if you already set the webhook
    * see more at https://core.telegram.org/bots/api#getupdates
+   * @memberof bot
    * @param {Object} data data to be sent
    * @returns {Object}
    */
@@ -153,6 +161,7 @@
   /**
    * get basic info about a file and prepare it for downloading
    * see more at https://core.telegram.org/bots/api#getfile
+   * @memberof bot
    * @param {String} fileId id of a telegram file
    * @returns {Object}
    */
@@ -163,6 +172,7 @@
   }
   /**
    * get basic info about a file and the download link. link expired in 1 hour
+   * @memberof bot
    * @param {String} fileId id of a telegram file
    * @returns {Object}
    */
@@ -173,6 +183,7 @@
   }
   /**
    * get bot webhook info
+   * @memberof bot
    * @param {Array} drop_pending_updates drop pending updates default (false)
    * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#deletewebhook
    * @returns {Object}
@@ -186,6 +197,7 @@
 /** setter functions */
   /**
    * set bot commands description
+   * @memberof bot
    * @param {Array} commands Array of commands and it's description
    * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#setmycommands
    * @returns {Object}
@@ -200,6 +212,7 @@
   }
   /**
    * set bot webhook
+   * @memberof bot
    * @param {Array} url Webhook https url
    * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#setwebhook
    * @returns {Object}
@@ -223,6 +236,7 @@
   
   /**
    * remove bot webhook
+   * @memberof bot
    * @param {Array} drop_pending_updates drop pending updates default (false)
    * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#deletewebhook
    * @returns {Object}
@@ -241,6 +255,7 @@
 /** modifier functions */
   /**
    * delete message
+   * @memberof bot
    * @param {Object} message message object to be deleted
    * @param {Object} params Additional parameters. https://core.telegram.org/bots/api#deletemessage
    * @returns {Boolean}
@@ -256,6 +271,7 @@
   }
   /**
    * edit message
+   * @memberof bot
    * @param {Object} message message object to be edited
    * @param {String} text new text of the message
    * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
@@ -277,6 +293,7 @@
 /** event functions */
   /**
    * do something when an callback_query is received
+   * @memberof bot
    * @param {String} data callback data you want to catch.
    * @param {Function} doSomething function you want to run when it catch the data
    * @returns {Object}
@@ -304,6 +321,7 @@
   }
   /**
    * do something when a message (or which contains specified text) is received
+   * @memberof bot
    * @param {String} text (optional) specified text.
    * @param {Function} doSomething function you want to run when it catch the message
    * @returns {Object}
@@ -341,6 +359,7 @@
   }
   /**
    * do something when a message (or which contains specified text) is received
+   * @memberof bot
    * @param {String} text (optional) specified text.
    * @param {Function} doSomething function you want to run when it catch the message
    * @returns {Object}
@@ -377,6 +396,7 @@
   }
   /**
    * do something when a command is received
+   * @memberof bot
    * @param {String} command your bot command.
    * @param {Function} doSomething function you want to run when it catch the command
    * @returns {Object}
@@ -409,6 +429,7 @@
   }
   /**
    * do something when a photo (or which contains specified caption) is received
+   * @memberof bot
    * @param {String} text (optional) specified caption.
    * @param {Function} doSomething function you want to run when it catch the photo
    * @returns {Object}
@@ -446,6 +467,7 @@
   }
   /**
    * do something when a document (or which contains specified caption) is received
+   * @memberof bot
    * @param {String} text (optional) specified caption.
    * @param {Function} doSomething function you want to run when it catch the photo
    * @returns {Object}
