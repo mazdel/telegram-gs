@@ -1,6 +1,6 @@
 {
   "src": [
-    "./main.gs",
+    "./main.js",
     "./LICENSE:md",
     {
       "guide": "./README.md"
