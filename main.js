@@ -3,7 +3,7 @@
    * @constructor
    * @param {String} token your telegram bot's token
    * @param {String} [updateMethod='trigger'] update method which gonna be used (webhook | trigger)
-   * @param {String} [event={}] event variable from doPost(event) which have to be passed when using webhook update method
+   * @param {Object} [event={}] event variable from doPost(event) which have to be passed when using webhook update method
    * @returns {Void}
    */
   function bot(token,updateMethod='trigger',event={}){
@@ -19,7 +19,7 @@
    * experts only,
    * send raw request to telegram api based on https://core.telegram.org/bots/api
    * @memberof bot
-   * @param {String} method the method of telegram API this request will use
+   * @param {String} [method] the method of telegram API this request will use
    * @param {Object} [data={}] data to be sent with the request
    * @returns {Object}
    */
@@ -37,10 +37,10 @@
   /**
    * send message to chat_id
    * @memberof bot
-   * @param {Int} chat_id Chat id of a telegram user
-   * @param {String} text Message to be sent
-   * @param {String} parse_mode Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
-   * @param {Object} params Additional parameters, see https://core.telegram.org/bots/api#sendmessage
+   * @param {Int} [chat_id] Chat id of a telegram user
+   * @param {String} [text] Message to be sent
+   * @param {String} [parse_mode = 'HTML'] Parse mode of message which will be sent. default is HTML. (see more at https://core.telegram.org/bots/api#formatting-options )
+   * @param {Object} [params={}] Additional parameters, see https://core.telegram.org/bots/api#sendmessage
    * @returns {Object}
    */
   bot.prototype.sendMessage = async function(chat_id, text, parse_mode = 'HTML',params={} ){
