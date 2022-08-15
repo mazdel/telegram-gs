@@ -1,5 +1,5 @@
 # telegram-gs
-Telegram API for Google App Script
+Telegram Bot API for Google App Script
 
 ## Installation
 There are two options of installation we can use and they are...
