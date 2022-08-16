@@ -1,5 +1,6 @@
 # telegram-gs
-[![GitHub license](https://img.shields.io/github/license/mazdel/telegram-gs?style=flat-square)](https://github.com/mazdel/telegram-gs/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/mazdel/telegram-gs?style=flat-square)](https://github.com/mazdel/telegram-gs/blob/main/LICENSE)
+![Language](https://img.shields.io/github/languages/top/mazdel/telegram-gs?style=flat-square)
 
 Telegram Bot API for Google App Script
 
