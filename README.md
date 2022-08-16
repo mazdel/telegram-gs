@@ -1,4 +1,6 @@
 # telegram-gs
+[![GitHub license](https://img.shields.io/github/license/mazdel/telegram-gs?style=flat-square)](https://github.com/mazdel/telegram-gs/blob/main/LICENSE)
+
 Telegram Bot API for Google App Script
 
 ## Installation
